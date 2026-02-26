@@ -1,0 +1,5 @@
+.env
+venv/
+llm_test/
+__pycache__/
+*.DS_Store
