@@ -1,0 +1,355 @@
+{
+  "run_meta": {
+    "ts": "2026-04-03T15:33:36+08:00",
+    "samples_path": "data/eval/impact_v2_samples.jsonl",
+    "total_samples": 30
+  },
+  "thresholds": {
+    "top1_precision": 0.7,
+    "top2_recall": 0.82,
+    "linked_precision": 0.55,
+    "triplet_constraint_rate": 1.0,
+    "evidence_traceability_rate": 0.9,
+    "avg_linked_modules_max": 1.5
+  },
+  "metrics": {
+    "top1_precision": 0.730769,
+    "top2_recall": 0.942308,
+    "linked_precision": 0.904762,
+    "triplet_constraint_rate": 1.0,
+    "evidence_traceability_rate": 1.0,
+    "avg_linked_modules": 0.7,
+    "top1_eligible_count": 26,
+    "top2_eligible_count": 26,
+    "linked_pred_total": 21
+  },
+  "gates": {
+    "top1_precision": true,
+    "top2_recall": true,
+    "linked_precision": true,
+    "triplet_constraint_rate": true,
+    "evidence_traceability_rate": true,
+    "avg_linked_modules_max": true,
+    "overall_pass": true
+  },
+  "by_category": {
+    "single_module": {
+      "count": 10,
+      "top1_precision": 1.0,
+      "top2_recall": 1.0,
+      "linked_precision": 0.0,
+      "triplet_constraint_rate": 1.0,
+      "evidence_traceability_rate": 1.0,
+      "avg_linked_modules": 0.0,
+      "top1_eligible_count": 10,
+      "top2_eligible_count": 10,
+      "linked_pred_total": 0
+    },
+    "cross_module": {
+      "count": 8,
+      "top1_precision": 0.5,
+      "top2_recall": 0.9375,
+      "linked_precision": 1.0,
+      "triplet_constraint_rate": 1.0,
+      "evidence_traceability_rate": 1.0,
+      "avg_linked_modules": 0.625,
+      "top1_eligible_count": 8,
+      "top2_eligible_count": 8,
+      "linked_pred_total": 5
+    },
+    "relation_rich": {
+      "count": 8,
+      "top1_precision": 0.625,
+      "top2_recall": 0.875,
+      "linked_precision": 0.875,
+      "triplet_constraint_rate": 1.0,
+      "evidence_traceability_rate": 1.0,
+      "avg_linked_modules": 2.0,
+      "top1_eligible_count": 8,
+      "top2_eligible_count": 8,
+      "linked_pred_total": 16
+    },
+    "weak_input": {
+      "count": 4,
+      "top1_precision": 0.0,
+      "top2_recall": 0.0,
+      "linked_precision": 0.0,
+      "triplet_constraint_rate": 1.0,
+      "evidence_traceability_rate": 1.0,
+      "avg_linked_modules": 0.0,
+      "top1_eligible_count": 0,
+      "top2_eligible_count": 0,
+      "linked_pred_total": 0
+    }
+  },
+  "errors": [
+    {
+      "sample_id": "S011",
+      "category": "cross_module",
+      "task_query": "评估订单创建后与库存扣减的一致性，包含取消后的库存回补联动。",
+      "gold_current_modules": [
+        "订单",
+        "库存/权益"
+      ],
+      "pred_current_modules": [
+        "库存/权益",
+        "订单"
+      ],
+      "gold_linked_modules": [
+        "库存/权益"
+      ],
+      "pred_linked_modules": [],
+      "gold_anchor_ids_primary": [
+        "requirement|file_upload|s011_req.md#1"
+      ],
+      "pred_anchor_ids": [
+        "requirement|file_upload|s011_req.md#1"
+      ],
+      "triplet_ok": true,
+      "traceable_ok": true,
+      "failed_checks": [
+        "current_top1_mismatch",
+        "linked_fn"
+      ],
+      "impact_summary": "当前需求涉及库存/权益、订单",
+      "pred_summary": "当前需求涉及库存/权益、订单"
+    },
+    {
+      "sample_id": "S014",
+      "category": "cross_module",
+      "task_query": "评估权限策略调整后订单下单权限与通知联动。",
+      "gold_current_modules": [
+        "用户/权限",
+        "订单"
+      ],
+      "pred_current_modules": [
+        "订单",
+        "用户/权限"
+      ],
+      "gold_linked_modules": [
+        "通知/消息"
+      ],
+      "pred_linked_modules": [
+        "通知/消息"
+      ],
+      "gold_anchor_ids_primary": [
+        "requirement|file_upload|s014_req.md#1"
+      ],
+      "pred_anchor_ids": [
+        "requirement|file_upload|s014_req.md#1"
+      ],
+      "triplet_ok": true,
+      "traceable_ok": true,
+      "failed_checks": [
+        "current_top1_mismatch"
+      ],
+      "impact_summary": "当前需求涉及订单、用户/权限，可能联动通知/消息",
+      "pred_summary": "当前需求涉及订单、用户/权限，可能联动通知/消息"
+    },
+    {
+      "sample_id": "S016",
+      "category": "cross_module",
+      "task_query": "评估订单库存确认后与支付确认的协同链路。",
+      "gold_current_modules": [
+        "订单",
+        "库存/权益"
+      ],
+      "pred_current_modules": [
+        "支付",
+        "订单"
+      ],
+      "gold_linked_modules": [
+        "支付"
+      ],
+      "pred_linked_modules": [],
+      "gold_anchor_ids_primary": [
+        "requirement|file_upload|s016_req.md#1"
+      ],
+      "pred_anchor_ids": [
+        "requirement|file_upload|s016_req.md#1"
+      ],
+      "triplet_ok": true,
+      "traceable_ok": true,
+      "failed_checks": [
+        "current_top1_mismatch",
+        "current_top2_partial",
+        "linked_fn"
+      ],
+      "impact_summary": "当前需求涉及支付、订单",
+      "pred_summary": "当前需求涉及支付、订单"
+    },
+    {
+      "sample_id": "S018",
+      "category": "cross_module",
+      "task_query": "评估消息权限配置变更对订单通知范围的影响。",
+      "gold_current_modules": [
+        "用户/权限",
+        "通知/消息"
+      ],
+      "pred_current_modules": [
+        "通知/消息",
+        "用户/权限"
+      ],
+      "gold_linked_modules": [
+        "订单"
+      ],
+      "pred_linked_modules": [
+        "订单"
+      ],
+      "gold_anchor_ids_primary": [
+        "requirement|file_upload|s018_req.md#1"
+      ],
+      "pred_anchor_ids": [
+        "requirement|file_upload|s018_req.md#1"
+      ],
+      "triplet_ok": true,
+      "traceable_ok": true,
+      "failed_checks": [
+        "current_top1_mismatch"
+      ],
+      "impact_summary": "当前需求涉及通知/消息、用户/权限，可能联动订单",
+      "pred_summary": "当前需求涉及通知/消息、用户/权限，可能联动订单"
+    },
+    {
+      "sample_id": "S019",
+      "category": "relation_rich",
+      "task_query": "权限规则调整后评估订单链路的库存与通知影响。",
+      "gold_current_modules": [
+        "订单",
+        "用户/权限"
+      ],
+      "pred_current_modules": [
+        "用户/权限",
+        "订单"
+      ],
+      "gold_linked_modules": [
+        "库存/权益",
+        "通知/消息"
+      ],
+      "pred_linked_modules": [
+        "库存/权益",
+        "通知/消息"
+      ],
+      "gold_anchor_ids_primary": [
+        "requirement|file_upload|s019_req.md#1"
+      ],
+      "pred_anchor_ids": [
+        "requirement|file_upload|s019_req.md#1"
+      ],
+      "triplet_ok": true,
+      "traceable_ok": true,
+      "failed_checks": [
+        "current_top1_mismatch"
+      ],
+      "impact_summary": "当前需求涉及用户/权限、订单，可能联动库存/权益、通知/消息",
+      "pred_summary": "当前需求涉及用户/权限、订单，可能联动库存/权益、通知/消息"
+    },
+    {
+      "sample_id": "S022",
+      "category": "relation_rich",
+      "task_query": "库存锁定策略调整后评估支付与通知联动。",
+      "gold_current_modules": [
+        "库存/权益",
+        "订单"
+      ],
+      "pred_current_modules": [
+        "库存/权益",
+        "支付"
+      ],
+      "gold_linked_modules": [
+        "支付",
+        "通知/消息"
+      ],
+      "pred_linked_modules": [
+        "通知/消息",
+        "订单"
+      ],
+      "gold_anchor_ids_primary": [
+        "requirement|file_upload|s022_req.md#1"
+      ],
+      "pred_anchor_ids": [
+        "requirement|file_upload|s022_req.md#1"
+      ],
+      "triplet_ok": true,
+      "traceable_ok": true,
+      "failed_checks": [
+        "current_top2_partial",
+        "linked_fp",
+        "linked_fn"
+      ],
+      "impact_summary": "当前需求涉及库存/权益、支付，可能联动通知/消息、订单",
+      "pred_summary": "当前需求涉及库存/权益、支付，可能联动通知/消息、订单"
+    },
+    {
+      "sample_id": "S023",
+      "category": "relation_rich",
+      "task_query": "支付权限分级后评估订单风控联动风险。",
+      "gold_current_modules": [
+        "用户/权限",
+        "支付"
+      ],
+      "pred_current_modules": [
+        "风控/安全",
+        "支付"
+      ],
+      "gold_linked_modules": [
+        "订单",
+        "风控/安全"
+      ],
+      "pred_linked_modules": [
+        "订单",
+        "用户/权限"
+      ],
+      "gold_anchor_ids_primary": [
+        "requirement|file_upload|s023_req.md#1"
+      ],
+      "pred_anchor_ids": [
+        "requirement|file_upload|s023_req.md#1"
+      ],
+      "triplet_ok": true,
+      "traceable_ok": true,
+      "failed_checks": [
+        "current_top1_mismatch",
+        "current_top2_partial",
+        "linked_fp",
+        "linked_fn"
+      ],
+      "impact_summary": "当前需求涉及风控/安全、支付，可能联动订单、用户/权限",
+      "pred_summary": "当前需求涉及风控/安全、支付，可能联动订单、用户/权限"
+    },
+    {
+      "sample_id": "S026",
+      "category": "relation_rich",
+      "task_query": "订单库存异常补偿改造后评估退款与支付影响。",
+      "gold_current_modules": [
+        "订单",
+        "库存/权益"
+      ],
+      "pred_current_modules": [
+        "库存/权益",
+        "订单"
+      ],
+      "gold_linked_modules": [
+        "退款",
+        "支付"
+      ],
+      "pred_linked_modules": [
+        "支付",
+        "退款"
+      ],
+      "gold_anchor_ids_primary": [
+        "requirement|file_upload|s026_req.md#1"
+      ],
+      "pred_anchor_ids": [
+        "requirement|file_upload|s026_req.md#1"
+      ],
+      "triplet_ok": true,
+      "traceable_ok": true,
+      "failed_checks": [
+        "current_top1_mismatch"
+      ],
+      "impact_summary": "当前需求涉及订单、库存/权益，可能联动支付、退款",
+      "pred_summary": "当前需求涉及订单、库存/权益，可能联动支付、退款"
+    }
+  ]
+}

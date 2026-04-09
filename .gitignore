@@ -4,3 +4,24 @@ llm_test/
 __pycache__/
 *.DS_Store
 data/outputs/
+
+# Runtime data (do not version)
+data/chroma_db/
+data/kb_assets/
+data/image_md_cache/
+data/review_queue.json
+data/observation_log.jsonl
+data/badcase_events.jsonl
+data/kb_operation_log.jsonl
+data/kb_index.lock
+data/risk_rule_templates.json
+
+# Sensitive/business assets (do not commit)
+data/input/ticketing_rules.txt
+archive/legacy_data/input/requirements.csv
+archive/legacy_data/outputs/REQ_001_cases.json
+archive/legacy_data/outputs/REQ_002_cases.json
+archive/legacy_data/outputs/cases_售后接入抖音组件.json
+data/eval/impact_v2_samples.jsonl
+data/eval/integration_v2_samples.jsonl
+data/kb_index.json
